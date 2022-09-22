@@ -61,6 +61,16 @@ public class RecordLightmapInfo : MonoBehaviour
 
         // jave.lin : 设置 lightmaps
         LightmapSettings.lightmaps = lightmapDatas.ToArray();
+
+        // jave.lin : 隐藏掉所有的 bake 类型的灯光
+        var lights = gameObject.GetComponentsInChildren<Light>(false);
+        foreach (var light in lights)
+        {
+            if (light.lightmapBakeType == LightmapBakeType.Baked)
+            {
+                light.gameObject.SetActive(false);
+            }
+        }
     }
 }
 
